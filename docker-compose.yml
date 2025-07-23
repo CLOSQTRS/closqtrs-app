@@ -1,0 +1,20 @@
+services:
+  api:
+    build: ./backend
+    container_name: closqtrs-api
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - DB_URL=${DB_URL:-}
+    expose:
+      - "3000"
+    restart: unless-stopped
+
+  web:
+    build: ./frontend
+    container_name: closqtrs-web
+    depends_on:
+      - api
+    ports:
+      - "80:80"   # maps host port 80 -> container web port 80
+    restart: unless-stopped

@@ -1,0 +1,6 @@
+# Ignore git metadata in build context
+.git
+.gitignore
+
+# Local env
+.env
